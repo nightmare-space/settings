@@ -5,12 +5,12 @@ import 'package:settings/src/interface/setting.dart';
 
 class DefaultSetting implements Setting {
   @override
-  String get(String key, defaultValue) {
+  dynamic get(String key, defaultValue) {
     return box!.get(key, defaultValue: defaultValue);
   }
 
   @override
-  void set(String key, String value) {
+  void set(String key, dynamic value) {
     box!.put(key, value);
   }
 }

@@ -14,11 +14,11 @@ extension Setting on String {
     }
   }
 
-  String get getFromStore {
-    return defaultSetting.get(this, '');
+  dynamic get getFromStore {
+    return defaultSetting.get(this, null);
   }
 
-  String get get {
+  dynamic get get {
     return ob.value;
   }
 
