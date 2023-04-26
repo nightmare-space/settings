@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:flutter/foundation.dart';
 import 'package:hive/hive.dart';
 import 'package:settings/src/interface/setting.dart';
 
@@ -19,4 +20,26 @@ Box? box;
 
 Future<void> initSettingStore(String path) async {
   box ??= await Hive.openBox('setting', path: path);
+}
+
+Map<SettingNode, ValueNotifier> _valueMap = {};
+
+class SettingNode {
+  SettingNode(this.key);
+  final String key;
+  ValueNotifier get ob {
+    if (_valueMap.containsKey(this)) {
+      return _valueMap[this]!;
+    } else {
+      return _valueMap[this] = ValueNotifier(get());
+    }
+  }
+
+  dynamic get() {
+    return box!.get(key, defaultValue: null);
+  }
+
+  void set(String value) {
+    box!.put(key, value);
+  }
 }

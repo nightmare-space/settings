@@ -1,6 +1,9 @@
-import 'package:flutter_test/flutter_test.dart';
-
 import 'package:settings/settings.dart';
 
-void main() {
+Future<void> main() async {
+  await initSettingStore('./test');
+  SettingNode node = 'test'.setting;
+  print('node.get -> ${node.get()}');
+  node.set('123');
+  print('node.get -> ${node.get()}');
 }
