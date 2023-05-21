@@ -39,7 +39,7 @@ class SettingNode {
     return box!.get(key, defaultValue: null);
   }
 
-  void set(String value) {
+  void set(dynamic value) {
     box!.put(key, value);
   }
 }
