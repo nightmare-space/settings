@@ -35,6 +35,15 @@ class SettingNode {
     }
   }
 
+  dynamic get value {
+    return get();
+  }
+
+  set value(dynamic value) {
+    set(value);
+    ob.value = value;
+  }
+
   dynamic get() {
     return box!.get(key, defaultValue: null);
   }
