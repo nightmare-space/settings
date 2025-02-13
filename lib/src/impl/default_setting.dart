@@ -44,14 +44,8 @@ class SettingNode {
     ob.value = value;
   }
 
-  /// Deprecated: Use [value] instead.
-  @deprecated
   dynamic get() {
     return box!.get(key, defaultValue: null);
-  }
-
-  dynamic get value {
-    return get();
   }
 
   void set(dynamic value) {
