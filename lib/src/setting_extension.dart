@@ -4,6 +4,10 @@ import 'impl/default_setting.dart';
 
 DefaultSetting defaultSetting = DefaultSetting();
 
-extension Setting on String {
-  SettingNode get setting => SettingNode(this);
+extension SettingNodeExt on String {
+  SettingNode get settingNode => SettingNode(this);
+}
+
+extension SettingExt on String {
+  Setting get setting => Setting(this);
 }

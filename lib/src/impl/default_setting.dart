@@ -2,15 +2,12 @@ import 'dart:async';
 
 import 'package:flutter/foundation.dart';
 import 'package:hive/hive.dart';
-import 'package:settings/src/interface/setting.dart';
 
-class DefaultSetting implements Setting {
-  @override
+class DefaultSetting {
   dynamic get(String key, defaultValue) {
     return box!.get(key, defaultValue: defaultValue);
   }
 
-  @override
   void set(String key, dynamic value) {
     box!.put(key, value);
   }
@@ -51,4 +48,10 @@ class SettingNode {
   void set(dynamic value) {
     box!.put(key, value);
   }
+}
+
+// Public-facing class compatible with Dart >=2.12 without nonfunction-type-aliases.
+// It behaves the same as SettingNode for consumers and is assignable to SettingNode.
+class Setting extends SettingNode {
+  Setting(String key) : super(key);
 }
