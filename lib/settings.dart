@@ -12,8 +12,7 @@ Future<void> initSettingStore(String path) async {
   Hive.init(path);
   box ??= await Hive.openBox('setting');
 }
-
-Map<Setting, ValueNotifier> _valueMap = {};
+Map<String, ValueNotifier> _valueMap = {};
 
 // deprecated, use Setting instead
 @Deprecated('Use Setting instead')
@@ -22,13 +21,14 @@ typedef SettingNode = Setting;
 class Setting {
   Setting(this.key);
   final String key;
+
   ValueNotifier get ob {
-    if (_valueMap.containsKey(this)) {
-      return _valueMap[this]!;
-    } else {
-      return _valueMap[this] = ValueNotifier(get());
-    }
+    return _valueMap.putIfAbsent(
+      key,
+      () => ValueNotifier(value),
+    );
   }
+
 
   dynamic get value {
     return get();
